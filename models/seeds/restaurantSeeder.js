@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Restaurant = require('../restaurant') // 載入 restaurant model
+const Restaurant = require('../restaurant')
 const restaurantList = require('../../restaurant.json').results
 
 if (process.env.NODE_ENV !== 'production') {
@@ -17,14 +17,14 @@ db.on('error', () => {
 })
 
 db.once("open", () => {
-  console.log("running restaurantSeeder script...")
+  console.log('MongoDB connected!')
 
   Restaurant.create(restaurantList)
     .then(() => {
       console.log("restaurantSeeder done!")
       db.close()
     })
-    .catch(error => console.log(error))
+    .catch(err => console.log(err))
 })
 
 
