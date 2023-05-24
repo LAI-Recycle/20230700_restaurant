@@ -11,6 +11,18 @@
           <div class="input-group-append">
             <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
           </div>
+          
+          <div>
+          <select class="form-select" aria-label="Default select example" name="sort" onchange="this.form.submit()">
+            <option value="" {{#unless sort}} disabled {{/unless}} selected>Sort</option>
+            <option value="name_en" {{#is sort "name_en" }} selected {{/is}}>A-Z</option>
+            <option value="-name_en" {{#is sort "-name_en" }} selected {{/is}}>Z-A</option>
+            <option value="-category" {{#is sort "-category" }} selected {{/is}}>類別</option>
+            <option value="-locaiton" {{#is sort "-location" }} selected {{/is}}>地區</option>
+            
+          </select>
+        </div>
+
         </div>
       </form>
     </div>
@@ -39,7 +51,7 @@
             </div>
             <div class="card-footer">
               <div class="d-flex flex-row justify-content-end">
-                <form action="/restaurants/{{ this._id }}?_method="PUT" method="POST">
+                <form action="/restaurants/{{ this._id }}/edit" method="GET">
                   <button type="submit"class="btn btn-outline-primary btn-sm">Edit</button></form>
                 <form action="/restaurants/{{ this._id }}" method="GET">
                   <button type="submit"class="btn btn-outline-primary btn-sm">Details</button></form>
