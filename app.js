@@ -3,6 +3,7 @@ const app = express()
 const port = 3000
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
+const methodOverride = require('method-override')
 const Restaurant = require('./models/restaurant')
 const restaurants = require('./models/restaurant')
 
@@ -28,6 +29,7 @@ app.engine('hbs', exphbs({ defaultLayout: 'main' , extname: 'hbs'}))
 app.set('view engine', 'hbs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 
 app.get('/', (req, res) => {
@@ -63,7 +65,7 @@ app.get('/search', (req, res) => {
     .catch((error) => console.log('error'))
 })
 
-app.get('/restaurants/:id/edit', (req, res) => {
+app.post('/restaurants/:id', (req, res) => {
   const id = req.params.id
   Restaurant.findById(id)
     .lean()
@@ -78,7 +80,7 @@ app.post('/restaurants', (req, res) => {
     .catch((error) => console.log('error'))
 })
 
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   const restaurant = req.body
   return Restaurant.findByIdAndUpdate(id, restaurant)
@@ -86,7 +88,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
     .catch((error) => console.log('error'))
 })
 
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then((restaurant) => restaurant.remove())

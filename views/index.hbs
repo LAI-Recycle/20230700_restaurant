@@ -39,11 +39,11 @@
             </div>
             <div class="card-footer">
               <div class="d-flex flex-row justify-content-end">
-                <form action="/restaurants/{{ this._id }}/edit" method="GET">
+                <form action="/restaurants/{{ this._id }}?_method="PUT" method="POST">
                   <button type="submit"class="btn btn-outline-primary btn-sm">Edit</button></form>
                 <form action="/restaurants/{{ this._id }}" method="GET">
                   <button type="submit"class="btn btn-outline-primary btn-sm">Details</button></form>
-                <form action="/restaurants/{{ this._id }}/delete" method="POST"> <button type="submit"class="btn btn-danger btn-sm text-white">Delete</button></form>
+                <form action="/restaurants/{{ this._id }}?_method=DELETE" method="POST"> <button type="submit"class="btn btn-danger btn-sm text-white">Delete</button></form>
               </div>
            </div>
           </div>
