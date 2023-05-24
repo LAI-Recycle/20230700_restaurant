@@ -1,4 +1,4 @@
-# Restaurant List CRUD
+# Restaurant List RESTful
 用Node.js、Express、Mongoose、MongoDB完成的專案，列出餐廳清單供使用者查詢、瀏覽、新增、編輯餐廳資訊。
 ![image](https://raw.githubusercontent.com/wuhsinyu311/restaurant-list/main/public/image/restaurant_list.jpg)
 ![image](https://raw.githubusercontent.com/wuhsinyu311/restaurant-list/main/public/image/restaurant_list2.jpg)
@@ -7,6 +7,7 @@
 ## Features
 - 查看所有餐廳
 - 用名稱或餐廳類別搜尋特定餐廳
+- 排序餐廳
 - 顯示餐廳的詳細資料
 - 搜尋特定餐廳
 - 新增餐廳
@@ -19,6 +20,7 @@
 - Express-handlebars @3.0.0
 - Mongoose @5.9.7
 - MongoDB
+- mongoose-override@3.0.0
 
 ### Installing
 1.請先確認已安裝node.js和npm
