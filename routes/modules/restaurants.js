@@ -8,8 +8,9 @@ router.get('/new', (req, res) => {
   })
   
 router.get('/:id', (req, res) => {
-    const id = req.params.id
-    return Restaurant.findById(id)
+    const userId = req.user._id
+    const _id = req.params.id
+    return Restaurant.findOne({ _id, userId })
       .lean()
       .then((restaurant) => res.render('show', { restaurant }))
       .catch(err => {
@@ -19,8 +20,9 @@ router.get('/:id', (req, res) => {
   })
   
 router.get('/:id/edit', (req, res) => {
-    const id = req.params.id
-    Restaurant.findById(id)
+    const userId = req.user._id
+    const _id = req.params.id
+    return Restaurant.findOne({ _id, userId })
       .lean()
       .then((restaurant) => res.render('edit', { restaurant }))
       .catch(err => {
@@ -30,8 +32,10 @@ router.get('/:id/edit', (req, res) => {
   })
   
 router.post('/', (req, res) => {
+    const userId = req.user._id
     const newRestaurant = req.body
-    return Restaurant.create(newRestaurant)
+    newRestaurant.userId = userId
+    return Restaurant.create( newRestaurant )
       .then(() => res.redirect('/'))
       .catch(err => {
         console.log(err)
@@ -40,10 +44,12 @@ router.post('/', (req, res) => {
   })
   
 router.put('/:id', (req, res) => {
-    const id = req.params.id
+    const userId = req.user._id
+    const _id = req.params.id
     const restaurant = req.body
-    return Restaurant.findByIdAndUpdate(id, restaurant)
-      .then(() => res.redirect(`/restaurants/${id}`))
+    // 怎麼做?
+    return Restaurant.findByIdAndUpdate(_id, restaurant ,userId)
+      .then(() => res.redirect(`/restaurants/${_id}`))
       .catch(err => {
         console.log(err)
         res.render('errPage', { errMsg: err.message })
@@ -51,8 +57,9 @@ router.put('/:id', (req, res) => {
   })
   
 router.delete('/:id', (req, res) => {
-    const id = req.params.id
-    return Restaurant.findById(id)
+    const userId = req.user._id
+    const _id = req.params.id
+    return Restaurant.findOne({ _id, userId })
       .then((restaurant) => restaurant.remove())
       .then(() => res.redirect('/'))
       .catch(err => {
