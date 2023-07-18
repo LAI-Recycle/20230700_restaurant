@@ -1,6 +1,7 @@
 <!-- ./views/index.handlebars -->
 <div class="container mt-5">
 <!-- search bar -->
+
 <div class="container search-bar">
   <div class="search-bar-outer">
     <div class="search-bar-inner">
@@ -11,6 +12,8 @@
           <div class="input-group-append">
             <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
           </div>
+
+          
           
           <div>
           <select class="form-select" aria-label="Default select example" name="sort" onchange="this.form.submit()">
@@ -29,10 +32,20 @@
   </div>
 </div>
 
+
 <!-- restaurant list -->
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
+
+      <div>
+        <a href="/restaurants/new">
+          <button type="button" class="btn btn-outline-danger mb-5">
+            新增餐廳
+          </button>
+        </a>
+      </div>
+
       <div class="row row-cols-sm-3">
         {{#each restaurants}}
         <a href="/restaurants/{{ this.id }}" class="text-secondary">
