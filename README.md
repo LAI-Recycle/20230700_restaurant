@@ -13,7 +13,7 @@
 ## 安裝流程
 1. clone 到本地端   
  ```
-$ git clone 
+$ git clone https://github.com/LAI-Recycle/20230700_restaurant.git
 ```   
 2. 安裝 npm：  
 ```
